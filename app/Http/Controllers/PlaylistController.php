@@ -18,6 +18,11 @@ class PlaylistController extends Controller
         return redirect('/');
     }
 
+    public function doAdd($id)
+    {
+        dd(request()->input());
+    }
+
     public function play($id)
     {
 
