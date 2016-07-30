@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    var_dump(\App\MusicChoice::all());
-});
+Route::get('/',['as'=>'homepage', 'uses'=>'HomepageController@index']);
+Route::get('/about',['as'=>'about', 'uses'=>'AboutController@index']);
+
