@@ -1,0 +1,24 @@
+{
+  "name": "misterioSeixas",
+  "description": "",
+  "main": "",
+  "authors": [
+    "mluisatbrito@gmail.com",
+    "henri.ferreira@gmail.com"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.6.1",
+    "bootstrap-sass": "^3.3.6",
+    "datatables.net-bs": "^1.10.12",
+    "spin.js": "spin-js#^2.0.1"
+  }
+}
