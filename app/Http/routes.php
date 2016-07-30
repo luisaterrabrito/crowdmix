@@ -14,3 +14,10 @@
 Route::get('/',['as'=>'homepage', 'uses'=>'HomepageController@index']);
 Route::get('/about',['as'=>'about', 'uses'=>'AboutController@index']);
 
+
+
+
+Route::group(['prefix' => 'playlist', 'as' => 'playlist.'], function () {
+    Route::get('{id}/add', ['as' => 'add', 'uses' => 'PlaylistController@add']);
+    Route::get('{id}/play', ['as' => 'play', 'uses' => 'PlaylistController@play']);
+});
