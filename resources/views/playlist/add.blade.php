@@ -10,7 +10,8 @@
                 <div class="row ">
                     <div class="col-md-6 col-md-offset-3 text-center">
                         <div class="form-group">
-                            <input type="email" class="form-control" id="name" name="name" placeholder="Your name" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your name"
+                                   required>
                         </div>
                     </div>
                 </div>
@@ -20,9 +21,31 @@
                             <div class="col-md-2 text-center">
                                 Música #{{ sprintf("%02d",$i) }}
                             </div>
-                            <div class="col-md-6 text-center">
-                                <div class="form-group">
-                                    <input type="email" class="form-control " id="name" name="name" placeholder="Search or insert link" required>
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control " id="name" name="name"
+                                               placeholder="Search or insert link" required data-handler="youtube_query">
+                                    </div>
+                                    <ul class="list-group" id="search-results-list">
+                                        <li class="list-group-item" style="display: block;">
+                                            <div class="col-xs-12 col-sm-3">
+                                                <img src="http://api.randomuser.me/portraits/men/49.jpg"
+                                                     alt="Scott Stevens" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9">
+                                                <span class="video_name"><strong>Scott Stevens</strong></span><br>
+                                                <span class="video_duration">Scott Stevens</span><br>
+                                                <span class="actions">
+                                                    <a href="#"><i class="fa fa-play"></i> Play</a>
+                                                    <a href="#"><i class="fa fa-check"></i> Select</a>
+                                                </span>
+                                                <br>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-md-4 text-center">
@@ -42,7 +65,8 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $(window).load(function () {
+        var youtubeQueryRoute = "{{ route('youtube.query') }}";
+        $(window).on('load', function () {
             PlaylistModule.initAddView();
         });
     </script>
