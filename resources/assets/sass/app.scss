@@ -1,2 +1,29 @@
 @import "vendor/bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "theme";
+
+
+#backgroundImage{
+  background-image: url("../images/crowdMix.jpg");
+  height: 865px;
+  width: 100%;
+  background-size: cover;
+  position: relative;
+}
+
+#backgroundImage > #titleContainer{
+  position: absolute;
+  left: 25%;
+  top: 45%;
+  width: 50%;
+  background-color: #FFFFFF;
+  opacity: 0.8;
+  filter: alpha(opacity=50);
+}
+#backgroundImage > #titleContainer > ul li{
+  color: #333;
+  padding: 20px;
+}
+
+#backgroundImage > #titleContainer > ul li h2{
+  text-transform: uppercase;
+}
