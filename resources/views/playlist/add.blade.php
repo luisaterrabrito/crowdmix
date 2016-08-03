@@ -1,14 +1,13 @@
 @extends ('layouts.layout')
 @section('content')
-    <div class="row content">
+    <div class="row">
         <br>
         <div class="col-xs-12">
             <h1 class="text-center">{{ $playlist->name }}</h1>
         </div>
         <div class="col-md-6 col-md-offset-3 col-xs-12">
-            <form method="POST" action="{{ route('playlist.add', ['id'=>$playlist->id]) }}" id="add_form">
-                {!! csrf_field() !!}
-                <div class="row">
+            <form>
+                <div class="row ">
                     <div class="col-md-6 col-md-offset-3 text-center">
                         <div class="form-group">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Your name"
@@ -20,26 +19,37 @@
                     <div id="music_container">
                         <div class="row">
                             <div class="col-md-2 text-center">
-                                Music #{{ sprintf("%02d",$i) }}
+                                Música #{{ sprintf("%02d",$i) }}
                             </div>
-                            <div class="col-md-6" style="padding-right: 0px;">
+                            <div class="col-md-6">
                                 <div class="panel panel-default">
-                                    <div class="form-group no-margin-bottom">
-                                        <input type="text" class="form-control no-margin-bottom " id="name"
-                                               placeholder="Type to search via YouTube" required
-                                               data-handler="youtube_query" data-id="{{ $i }}">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control " id="name" name="name"
+                                               placeholder="Search or insert link" required data-handler="youtube_query">
                                     </div>
-                                    <ul class="list-group hidden search-results" onclick="stop_propgation()"
-                                        id="search-results-list-{{ $i }}}"
-                                        data-id="{{ $i }}">
+                                    <ul class="list-group" id="search-results-list">
+                                        <li class="list-group-item" style="display: block;">
+                                            <div class="col-xs-12 col-sm-3">
+                                                <img src="http://api.randomuser.me/portraits/men/49.jpg"
+                                                     alt="Scott Stevens" class="img-responsive">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9">
+                                                <span class="video_name"><strong>Scott Stevens</strong></span><br>
+                                                <span class="video_duration">Scott Stevens</span><br>
+                                                <span class="actions">
+                                                    <a href="#"><i class="fa fa-play"></i> Play</a>
+                                                    <a href="#"><i class="fa fa-check"></i> Select</a>
+                                                </span>
+                                                <br>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
-                            <input type="hidden"  value="" data-type="video_info" name="videos[{{ $i }}][name]" id="videos_{{ $i }}_name">
-                            <input type="hidden"  value="" data-type="video_info"  name="videos[{{ $i }}][video_code]" id="videos_{{ $i }}_video_code">
-                            <input type="hidden"  value="" data-type="video_info" name="videos[{{ $i }}][video_url]" id="videos_{{ $i }}_video_url">
                             <div class="col-md-4 text-center">
-                                <span class="form-control-static video-label" data-id="{{ $i }}"></span>
+                                <span class="form-control-static">NOME VIDEO</span>
                             </div>
                         </div>
                     </div>
@@ -51,17 +61,11 @@
             </form>
         </div>
     </div>
-    <div id="player" class="absolute-player"></div>
 @stop
 
 @section('scripts')
     <script type="text/javascript">
         var youtubeQueryRoute = "{{ route('youtube.query') }}";
-        var play_video;
-        var select_video;
-        var player;
-        var deleteEntry;
-        var stop_propgation;
         $(window).on('load', function () {
             PlaylistModule.initAddView();
         });
