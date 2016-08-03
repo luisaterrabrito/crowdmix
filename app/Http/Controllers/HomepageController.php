@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Playlist;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,6 +11,7 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        return view('homepage');
+        $playlists = Playlist::all();
+        return view('homepage', ['playlists'=>$playlists]);
     }
 }

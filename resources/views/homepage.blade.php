@@ -1,20 +1,25 @@
 @extends ('layouts.layout')
+@section('content')
+    <!-- HOME -->
+    <section id="home" class="padbot0">
+        <div id="backgroundImage">
+            <div id="titleContainer">
+                <ul class="text-center">
+                    <li><h2>Choose your Mix</h2></li>
+                    @foreach($playlists as $playlist)
+                        <li>
+                            <h3>
+                                {{ $playlist->name }}
+                                @if($playlist->is_playable)
+                                    <a><i class="fa fa-play"></i></a>
+                                @endif
+                                <a><i class="fa fa-pencil"></i></a>
+                            </h3>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </section><!-- //HOME -->
 
-<!-- HOME -->
-<section id="home" class="padbot0">
-    <!-- TOP SLIDER -->
-    <div class="top_slider">
-        <ul class="slides">
-            <li class="slide1">
-                <div class="flex_caption1">
-                    <p class="title1 captionDelay2 FromTop">Creative</p>
-                    <p class="title2 captionDelay4 FromTop">White</p>
-                    <p class="title3 captionDelay6 FromTop">Templates</p>
-                    <p class="title4 captionDelay7 FromBottom">The template is suitable for any company and the
-                        direction that appreciates style, purity and quality of the web site.</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-</section><!-- //HOME -->
-
+@stop
