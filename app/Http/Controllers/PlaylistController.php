@@ -25,7 +25,6 @@ class PlaylistController extends Controller
 
     public function play($id)
     {
-
         $playlist = Playlist::find($id);
         if (!is_null($playlist)) {
             return view('playlist.play', ['playlist' => $playlist]);

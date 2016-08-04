@@ -11,9 +11,9 @@
                             <h3>
                                 {{ $playlist->name }}
                                 @if($playlist->is_playable)
-                                    <a><i class="fa fa-play"></i></a>
+                                    <a href="{{ route('playlist.play',['id'=>1]) }}"><i class="fa fa-play"></i></a>
                                 @endif
-                                <a><i class="fa fa-pencil"></i></a>
+                                <a href="{{ route('playlist.add',['id'=>1]) }}"><i class="fa fa-pencil"></i></a>
                             </h3>
                         </li>
                     @endforeach
