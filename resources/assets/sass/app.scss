@@ -1,2 +1,6 @@
 @import "vendor/bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "theme";
+
+.no-margin-bottom {
+  margin-bottom: 0px !important;
+}
