@@ -2,6 +2,10 @@
 @import "vendor/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar";
 @import "theme";
 
+.no-margin-bottom {
+  margin-bottom: 0px !important;
+}
+
 #backgroundImage{
   background-image: url("../images/crowdMix.jpg");
   height: 865px;

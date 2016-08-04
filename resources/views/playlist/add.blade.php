@@ -23,8 +23,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="panel panel-default">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control " id="name" name="name"
+                                    <div class="form-group no-margin-bottom">
+                                        <input type="text" class="form-control no-margin-bottom " id="name" name="name"
                                                placeholder="Search or insert link" required data-handler="youtube_query">
                                     </div>
                                     <ul class="list-group" id="search-results-list">
