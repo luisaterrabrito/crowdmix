@@ -19,20 +19,22 @@ class PlaylistController extends Controller
         return redirect('/');
     }
 
-    public function doAdd(SaveMusicChoice $request, $id)
+    public function doAdd(/*SaveMusicChoice $request,*/
+        $id)
     {
         $playlist = Playlist::find($id);
-        $videos = $request->input('videos');
+        $videos = request()->input('videos');
         $musicChoices = [];
         foreach ($videos as $video) {
             $musicChoices[] = new MusicChoice([
-                'name' => $request - input('name'),
+                'creator_name' => request()->input('name'),
                 'video_id' => $video['video_code'],
-                'video_name' => $video['video_name'],
+                'video_name' => $video['name'],
                 'link_url' => $video['video_url']
             ]);
         }
-        $playlist->music_choices()->attachMany($musicChoices);
+        $playlist->music_choices()->saveMany($musicChoices);
+        return redirect(route('homepage'));
     }
 
     public function play($id)

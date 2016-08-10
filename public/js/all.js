@@ -5,6 +5,7 @@
 var PlaylistModule = (function () {
     return {
         initAddView: function () {
+
             console.log("PlaylistModule add init.");
             var videos = [];
             $('body').on('click', function () {
@@ -141,38 +142,66 @@ var PlaylistModule = (function () {
 
                 }, delay);
             });
+        },
+        initPlayView: function () {
+            var player;
+
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    height: '460',
+                    width: '768',
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    },
+                    iv_load_policy: 3
+                });
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+                player.loadPlaylist({
+                    'playlist': playlistDB,
+                    'listType': 'playlist',
+                    'index': 0
+                });
+            }
+
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.ENDED) {
+                    event.target.playVideo();
+                }
+                else if (event.data == YT.PlayerState.BUFFERING) {
+                    refreshStatus();
+                    checkIfInView();
+                }
+            }
+
+            function addActiveClass() {
+                $(".music:first").addClass("active");
+            };
+
+            $(".music").on('click', function () {
+                player.loadVideoById($(this).attr("data-video-id"));
+                refreshStatus();
+            });
+            function refreshStatus() {
+                $(".music").removeClass("active");
+                $(".music[data-video-id='" + player.getVideoData()["video_id"] + "']").addClass("active");
+                checkIfInView();
+            }
+
+            $(".music.active").mCustomScrollbar();
+
+            function checkIfInView() {
+                var music = $(".music.active");
+                $('.mCustomScrollbar').mCustomScrollbar("scrollTo", music);
+            }
+
+            onYouTubeIframeAPIReady();
+            addActiveClass();
         }
     }
 })
 ();
-var fixed_menu = true;
-window.jQuery = window.$ = jQuery;
-
-jQuery(document).ready(function() {
-	//MobileMenu
-	if ($(window).width() < 768){
-		jQuery('.menu_block .container').prepend('<a href="javascript:void(0)" class="menu_toggler"><span class="fa fa-align-justify"></span></a>');
-		jQuery('header .navmenu').hide();
-		jQuery('.menu_toggler, .navmenu ul li a').click(function(){
-			jQuery('header .navmenu').slideToggle(300);
-		});
-	}
-		
-	// if single_page
-	if (jQuery("#page").hasClass("single_page")) {			
-	}
-	else {
-		$(window).scroll(function(event) {
-			calculateScroll();
-		});
-		$('.navmenu ul li a, .mobile_menu ul li a, .btn_down').click(function() {  
-			$('html, body').animate({scrollTop: $(this.hash).offset().top - 80}, 1000);
-			return false;
-		});
-	};
-});
-
-
-
-
 //# sourceMappingURL=all.js.map

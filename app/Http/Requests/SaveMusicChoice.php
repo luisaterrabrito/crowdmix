@@ -25,10 +25,10 @@ class SaveMusicChoice extends Request
     public function rules()
     {
         return [
-            'videos.*.video_name' => 'required',
+            'videos.*.name' => 'required',
             'videos.*.video_url' => 'required',
             'videos.*.video_code' => 'required',
-            'name:required'
+            'name' => 'required'
         ];
     }
 }
