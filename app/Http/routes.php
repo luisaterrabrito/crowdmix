@@ -1,24 +1,16 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 
-Route::get('/',['as'=>'homepage', 'uses'=>'HomepageController@index']);
-Route::get('/about',['as'=>'about', 'uses'=>'AboutController@index']);
-
-
+Route::get('/', ['as' => 'homepage', 'uses' => 'HomepageController@index']);
+Route::get('/about', ['as' => 'about', 'uses' => 'AboutController@index']);
 
 
 Route::group(['prefix' => 'playlist', 'as' => 'playlist.'], function () {
     Route::get('{id}/add', ['as' => 'add', 'uses' => 'PlaylistController@add']);
     Route::post('{id}/add', ['as' => 'add', 'uses' => 'PlaylistController@doAdd']);
     Route::get('{id}/play', ['as' => 'play', 'uses' => 'PlaylistController@play']);
+});
+
+Route::group(['prefix' => 'youtube', 'as' => 'youtube.'], function () {
+    Route::get('query', ['as' => 'query', 'uses' => 'YouTubeController@query']);
 });
