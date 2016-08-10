@@ -17,7 +17,9 @@ var paths = {
     'datatables': base_dir + 'datatables.net/',
     'datatables_bs': base_dir + 'datatables.net-bs/',
     'spinjs': base_dir + 'spin.js/',
-    'font_awesome': base_dir + 'font-awesome/'
+    'font_awesome': base_dir + 'font-awesome/',
+    'malihu_custom_scrollbar_plugin': base_dir + 'malihu-custom-scrollbar-plugin/',
+    'youtube_iframe_api': base_dir + 'youtube-iframe-api/'
 };
 
 elixir(function (mix) {
@@ -41,6 +43,17 @@ elixir(function (mix) {
             paths.datatables_bs + 'js/dataTables.bootstrap.min.js',
             'public/js/dataTables.bootstrap.min.js'
         )
+
+        .copy(
+            paths.malihu_custom_scrollbar_plugin + 'jquery.mCustomScrollbar.concat.min.js',
+            'public/js/jquery.mCustomScrollbar.concat.min.js'
+        )
+
+        .copy(
+            paths.youtube_iframe_api + 'youtube.iframe-api.js',
+            'public/js/youtube.iframe-api.js'
+        )
+
         .scripts(['../../../' + paths.spinjs + 'spin.js'],
             'public/js/spin-js.min.js'
         )
@@ -48,6 +61,6 @@ elixir(function (mix) {
         .scriptsIn()
         .version('css/app.css')
         .browserSync({
-            proxy: 'misteriodeseixas.tk'
+            proxy: 'misteriodeseixas.local'
         });
 });
