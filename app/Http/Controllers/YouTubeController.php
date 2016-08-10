@@ -12,7 +12,8 @@ class YouTubeController extends Controller
     {
         if (request()->has('query')) {
             $query = request()->input('query');
-            $videoList = Youtube::searchVideos($query);
+//            $videoList = Youtube::searchVideos($query);
+            $videoList = Youtube::searchAdvanced(['maxResults' => 50, 'q' => $query, 'type' => 'video', 'part' => 'id, snippet']);
             $videoIds = array_map(function ($video) {
                 return $video->id->videoId;
             }, $videoList);

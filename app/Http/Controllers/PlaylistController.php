@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MusicChoice;
 use App\Models\Playlist;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\SaveMusicChoice;
 use App\Http\Requests;
 
 class PlaylistController extends Controller
@@ -18,9 +19,20 @@ class PlaylistController extends Controller
         return redirect('/');
     }
 
-    public function doAdd($id)
+    public function doAdd(SaveMusicChoice $request, $id)
     {
-        dd(request()->input());
+        $playlist = Playlist::find($id);
+        $videos = $request->input('videos');
+        $musicChoices = [];
+        foreach ($videos as $video) {
+            $musicChoices[] = new MusicChoice([
+                'name' => $request - input('name'),
+                'video_id' => $video['video_code'],
+                'video_name' => $video['video_name'],
+                'link_url' => $video['video_url']
+            ]);
+        }
+        $playlist->music_choices()->attachMany($musicChoices);
     }
 
     public function play($id)

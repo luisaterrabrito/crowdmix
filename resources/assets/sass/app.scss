@@ -4,3 +4,28 @@
 .no-margin-bottom {
   margin-bottom: 0px !important;
 }
+
+.search-results {
+  position: absolute !important;
+  z-index: 100 !important;
+  border-style: solid;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: white;
+}
+
+.absolute-player {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+}
+
+.content {
+  margin-bottom: 120px!important;
+}
+
+.top-icon{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
